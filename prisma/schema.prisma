@@ -1,0 +1,31 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./.db.dev/dev.db"
+}
+
+model Movie {
+  id              Int         @id @default(autoincrement())
+  name            String
+
+  // Relation
+  quotes Quote[]
+  @@map("movies")
+}
+
+model Quote {
+  id              Int         @id @default(autoincrement())
+  quote           String
+  saidBy          String
+  movieId         Int         @map("movie_id")
+  createdDatetime DateTime    @default(now()) @map("created_datetime")
+
+  movie Movie @relation(fields: [movieId], references: [id])
+  @@map("quotes")
+}

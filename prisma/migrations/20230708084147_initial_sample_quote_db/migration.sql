@@ -1,0 +1,14 @@
+-- CreateTable
+CREATE TABLE "movies" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "name" TEXT NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "quotes" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "quote" TEXT NOT NULL,
+    "saidBy" TEXT NOT NULL,
+    "movie_id" INTEGER NOT NULL,
+    "created_datetime" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
