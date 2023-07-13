@@ -7,6 +7,22 @@ class QuoteController {
 
     return res.send(quotes)
   }
+
+  static store = async(req: Request, res: Response) => {
+    const { quote, saidBy, movieId } = req.body
+
+    const newQuote = await prisma.quote.create({
+      data: {
+        quote,
+        saidBy,
+        movie: {
+          connect: { id: +movieId },
+        },
+      },
+    })
+
+    return res.send(newQuote)
+  }
 }
 
 export default QuoteController
