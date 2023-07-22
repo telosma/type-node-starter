@@ -19,6 +19,7 @@ class QuoteController {
         movie: {connect: { id: Number(movieId)}},
       },
     })
+
     return res.send(post)
   }
 
